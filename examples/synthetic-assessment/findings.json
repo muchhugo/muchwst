@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "assessment_id": "SYNTHETIC-EXAMPLE-001",
+  "title": "Synthetic web security report — example only",
+  "classification": "synthetic-example",
+  "example_only": true,
+  "created_at": "2026-10-19 (example authoring date, not a test timestamp)",
+  "mode": "review",
+  "target": {
+    "name": "Fictional tenant documents application — no real target",
+    "repository": "synthetic example; no repository was assessed",
+    "branch": "example-only",
+    "base_revision": "fictional-before",
+    "head_revision": "fictional-before",
+    "configuration_revision": "fictional-config",
+    "environment": "No application was run"
+  },
+  "scope": {
+    "authorized_operations": [
+      "Create a synthetic illustration of the report format"
+    ],
+    "inclusions": [
+      "A fictional document read path with an intentionally described missing ownership check"
+    ],
+    "exclusions": [
+      "All real applications, users, hosts, Cloudflare accounts and credentials"
+    ],
+    "limits": "No application or network tests; no real records or tokens",
+    "report_destination": "This clearly labeled synthetic example only"
+  },
+  "summary": "This is a fictional formatting example, not a security finding in any user project. The imagined handler authenticates a user, then fetches a document by arbitrary ID without checking tenant membership. All locations and code assumptions below are illustrative; no exploitation or retest occurred.",
+  "methods": [
+    "Constructed fictional source-flow narrative solely to demonstrate reporting fields"
+  ],
+  "tools": [],
+  "coverage": [
+    {
+      "surface": "Fictional document read flow",
+      "revision": "fictional-before",
+      "ranges": "Fictional lines 1–6",
+      "status": "not-assessed",
+      "method": "Illustration only, not actual source analysis",
+      "reason": "No target code exists in this example"
+    }
+  ],
+  "findings": [
+    {
+      "id": "EXAMPLE-001",
+      "title": "Illustrative missing document tenant check — not a real target finding",
+      "kind": "vulnerability",
+      "severity": "high",
+      "severity_reason": "Within the fictional premises, one authenticated tenant can read another tenant's private document. This is an illustrative qualitative rating, not a scored real assessment.",
+      "evidence_level": "confirmed-code",
+      "confidence": "high",
+      "confidence_reason": "Illustrates how a code-proven defect would be labeled IF the stated flow and absence of other guards were actually established. No real code was reviewed; the entire record is synthetic.",
+      "status": "open",
+      "priority": "P1 (illustrative only)",
+      "priority_reason": "Hypothetical cross-tenant confidentiality impact",
+      "locations": [
+        {
+          "path": "fictional/app/document-route.ts (does not exist)",
+          "lines": "1–6 (illustrative)",
+          "endpoint": "GET /api/documents/{id} (fictional)",
+          "revision": "fictional-before"
+        }
+      ],
+      "prerequisites": "FICTIONAL PREMISES: two owned test tenants, one private document in tenant B, user in tenant A, and no upstream/downstream authorization not described here.",
+      "data_flow": "Fictional authenticated user A → caller-selected document ID → lookup by ID alone → raw document response.",
+      "counterevidence": "The example stipulates no middleware, RLS, shared policy or serializer gate prevents access. A real review must inspect and prove those facts, not adopt this stipulation.",
+      "root_cause": "Illustrative authoritative read query does not constrain access to the verified actor/tenant.",
+      "impact": "Hypothetical unauthorized read of a private document. No real disclosure is alleged.",
+      "evidence": [
+        "ILLUSTRATIVE PSEUDOCODE, not extracted source:\nactor = requireSession(request)\ndocument = documents.findById(request.params.id)\nreturn json(document)\nFictional premise: no other authorization gate exists."
+      ],
+      "reproduction": {
+        "status": "not-executed",
+        "environment": "Proposed disposable synthetic local fixture only",
+        "setup": "Create two owned test users in separate test tenants and a synthetic private document owned by tenant B.",
+        "steps": [
+          "As test user A, request the test document ID from tenant B using only a placeholder/owned test session.",
+          "Minimal proposed request: GET /api/documents/<TENANT_B_TEST_DOCUMENT_ID> with Authorization: Bearer <OWNED_TEST_TOKEN_A>.",
+          "Compare the serialized response against the forbidden object and confirm legitimate tenant B access separately."
+        ],
+        "expected": "User A must not receive tenant B's private document; use the application's deliberate forbidden/not-found contract.",
+        "observed": "Not dynamically reproduced. No request was sent and no application was run.",
+        "cleanup": "Remove only synthetic fixtures after an authorized future local test; nothing was created in an application here."
+      },
+      "correction": "In a real equivalent defect, enforce actor/tenant object authorization at the shared server boundary, then serialize an explicit authorized DTO. Verify the actual ORM/policy API rather than copy pseudocode.",
+      "mitigation": "A WAF can be supplemental containment, but cannot replace object-level authorization and does not close this illustrative source defect.",
+      "compatibility": "Review legitimate owner/member/admin paths, exports, bulk reads, workers and real-time delivery before applying a real patch.",
+      "regression_tests": [
+        "Proposed only: cross-tenant read fails before correction under the intended assertion and passes after the guard is restored.",
+        "Proposed only: permitted reads still return only allowed fields; test revoked users and alternate routes when present."
+      ],
+      "rollout_rollback": "No change applied or deployed. For a real patch, test affected callers and caches; reverting may reopen the defect.",
+      "retests": [],
+      "next_action": "Use this format with actual evidence from a separately authorized review; do not treat this record as an audit result.",
+      "mappings": []
+    }
+  ],
+  "changes": [
+    "Created this report-format illustration; no application code or infrastructure changed"
+  ],
+  "tests": [],
+  "limitations": [
+    "No real source review, dynamic reproduction, retest, deployment or independent review occurred.",
+    "No live institutional source, current CVE or vendor feature was verified."
+  ],
+  "residual_risks": [
+    "This example provides no assurance about any actual application."
+  ],
+  "next_actions": [
+    "Run an authorized review on a real selected project before creating actual findings."
+  ],
+  "sources": [
+    {
+      "publisher": "OWASP",
+      "url_or_path": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "edition": "Not verified",
+      "retrieved_at": "Not retrieved",
+      "section": "Suggested reading, no control mapping claimed",
+      "status": "pointer-only"
+    }
+  ],
+  "production_changes": "None; no production target was accessed.",
+  "persistence": "Synthetic format example. Actual output read-back is reported by the renderer, not asserted as a test of the fictional app."
+}

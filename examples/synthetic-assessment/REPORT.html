@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"><title>Synthetic web security report — example only</title><style>body{font:16px/1.55 system-ui,sans-serif;max-width:1000px;margin:40px auto;padding:0 24px;color:#152537;background:#fff}h1{font-size:2.1rem;line-height:1.2}h2{margin-top:2.3rem;border-bottom:2px solid #dce3eb;padding-bottom:.4rem}h3{margin-top:1.6rem}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 ui-monospace,monospace;padding:16px;background:#f4f6f8;border:1px solid #dce3eb;border-radius:5px}.notice{padding:12px 16px;border-left:4px solid #9c4b00;background:#fff2df;font-weight:650}.subtle{font-size:.9rem;color:#40556b}@media print{body{margin:0;max-width:none;font-size:11pt}pre{font-size:9pt}h2,h3{break-after:avoid}section{break-inside:auto}.notice{background:none}}</style></head><body><h1>Synthetic web security report — example only</h1><p class="notice">SYNTHETIC EXAMPLE — no real target was assessed; scenarios are fictional.</p><p class="subtle">Offline rendering. Supplied evidence, severity, CVSS arithmetic and secret redaction require human/agent review; no network or scripts are loaded.</p><section><h2>Assessment</h2><pre>Assessment id: SYNTHETIC-EXAMPLE-001
+Classification: synthetic-example
+Created at: 2026-10-19 (example authoring date, not a test timestamp)
+Mode: review</pre></section><section><h2>Target and revisions</h2><pre>Name: Fictional tenant documents application — no real target
+Repository: synthetic example; no repository was assessed
+Branch: example-only
+Base revision: fictional-before
+Head revision: fictional-before
+Configuration revision: fictional-config
+Environment: No application was run</pre></section><section><h2>Summary</h2><pre>This is a fictional formatting example, not a security finding in any user project. The imagined handler authenticates a user, then fetches a document by arbitrary ID without checking tenant membership. All locations and code assumptions below are illustrative; no exploitation or retest occurred.
+
+Confirmed vulnerability records (including remediated history): 1
+critical: 0, high: 1, medium: 0, low: 0, informational: 0
+Confirmed remediation states: open: 1
+Suspected vulnerability records: 0
+Other observations/closed false positives: 0
+Counts describe supplied records, not independently verified target truth.</pre></section><section><h2>Authorization and scope</h2><pre>Authorized operations
+- Create a synthetic illustration of the report format
+
+Inclusions
+- A fictional document read path with an intentionally described missing ownership check
+
+Exclusions
+- All real applications, users, hosts, Cloudflare accounts and credentials
+
+Limits
+No application or network tests; no real records or tokens
+
+Report destination
+This clearly labeled synthetic example only</pre></section><section><h2>Methods</h2><pre>- Constructed fictional source-flow narrative solely to demonstrate reporting fields</pre></section><section><h2>Tools actually executed</h2><pre>None recorded.</pre></section><section><h2>Coverage and gaps</h2><pre>Surface: Fictional document read flow
+Revision: fictional-before
+Ranges: Fictional lines 1–6
+Status: not-assessed
+Method: Illustration only, not actual source analysis
+Reason: No target code exists in this example</pre></section><section><h2>EXAMPLE-001 — Illustrative missing document tenant check — not a real target finding</h2><pre>Kind: vulnerability
+Severity: high
+Severity reason: Within the fictional premises, one authenticated tenant can read another tenant&#x27;s private document. This is an illustrative qualitative rating, not a scored real assessment.
+Evidence level: confirmed-code
+Confidence: high
+Confidence reason: Illustrates how a code-proven defect would be labeled IF the stated flow and absence of other guards were actually established. No real code was reviewed; the entire record is synthetic.
+Status: open
+Priority: P1 (illustrative only)
+Priority reason: Hypothetical cross-tenant confidentiality impact</pre></section><section><h3>Affected locations and prerequisites</h3><pre>Path: fictional/app/document-route.ts (does not exist)
+Lines: 1–6 (illustrative)
+Endpoint: GET /api/documents/{id} (fictional)
+Revision: fictional-before
+
+FICTIONAL PREMISES: two owned test tenants, one private document in tenant B, user in tenant A, and no upstream/downstream authorization not described here.</pre></section><section><h3>Data flow</h3><pre>Fictional authenticated user A → caller-selected document ID → lookup by ID alone → raw document response.</pre></section><section><h3>Counterevidence considered</h3><pre>The example stipulates no middleware, RLS, shared policy or serializer gate prevents access. A real review must inspect and prove those facts, not adopt this stipulation.</pre></section><section><h3>Root cause</h3><pre>Illustrative authoritative read query does not constrain access to the verified actor/tenant.</pre></section><section><h3>Impact</h3><pre>Hypothetical unauthorized read of a private document. No real disclosure is alleged.</pre></section><section><h3>Sanitized evidence</h3><pre>- ILLUSTRATIVE PSEUDOCODE, not extracted source:
+actor = requireSession(request)
+document = documents.findById(request.params.id)
+return json(document)
+Fictional premise: no other authorization gate exists.</pre></section><section><h3>Exploration and safe reproduction</h3><pre>Status
+not-executed
+
+Environment
+Proposed disposable synthetic local fixture only
+
+Setup
+Create two owned test users in separate test tenants and a synthetic private document owned by tenant B.
+
+Steps
+- As test user A, request the test document ID from tenant B using only a placeholder/owned test session.
+- Minimal proposed request: GET /api/documents/&lt;TENANT_B_TEST_DOCUMENT_ID&gt; with Authorization: Bearer &lt;OWNED_TEST_TOKEN_A&gt;.
+- Compare the serialized response against the forbidden object and confirm legitimate tenant B access separately.
+
+Expected
+User A must not receive tenant B&#x27;s private document; use the application&#x27;s deliberate forbidden/not-found contract.
+
+Observed
+Not dynamically reproduced. No request was sent and no application was run.
+
+Cleanup
+Remove only synthetic fixtures after an authorized future local test; nothing was created in an application here.</pre></section><section><h3>Root-cause correction</h3><pre>In a real equivalent defect, enforce actor/tenant object authorization at the shared server boundary, then serialize an explicit authorized DTO. Verify the actual ORM/policy API rather than copy pseudocode.</pre></section><section><h3>Mitigation (not a code fix)</h3><pre>A WAF can be supplemental containment, but cannot replace object-level authorization and does not close this illustrative source defect.</pre></section><section><h3>Compatibility and affected consumers</h3><pre>Review legitimate owner/member/admin paths, exports, bulk reads, workers and real-time delivery before applying a real patch.</pre></section><section><h3>Rollout and rollback</h3><pre>No change applied or deployed. For a real patch, test affected callers and caches; reverting may reopen the defect.</pre></section><section><h3>Regression tests</h3><pre>- Proposed only: cross-tenant read fails before correction under the intended assertion and passes after the guard is restored.
+- Proposed only: permitted reads still return only allowed fields; test revoked users and alternate routes when present.</pre></section><section><h3>Retest history</h3><pre>No retest recorded.</pre></section><section><h3>Verified mappings</h3><pre>Not mapped.</pre></section><section><h3>Next action</h3><pre>Use this format with actual evidence from a separately authorized review; do not treat this record as an audit result.</pre></section><section><h2>Changes actually made</h2><pre>- Created this report-format illustration; no application code or infrastructure changed</pre></section><section><h2>Limitations</h2><pre>- No real source review, dynamic reproduction, retest, deployment or independent review occurred.
+- No live institutional source, current CVE or vendor feature was verified.</pre></section><section><h2>Residual risk</h2><pre>- This example provides no assurance about any actual application.</pre></section><section><h2>Next actions</h2><pre>- Run an authorized review on a real selected project before creating actual findings.</pre></section><section><h2>Assessment test records</h2><pre>No tests recorded.</pre></section><section><h2>Sources and freshness</h2><pre>Publisher: OWASP
+Url or path: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html
+Edition: Not verified
+Retrieved at: Not retrieved
+Section: Suggested reading, no control mapping claimed
+Status: pointer-only</pre></section><section><h2>Production changes</h2><pre>None; no production target was accessed.</pre></section><section><h2>Persistence statement supplied by author</h2><pre>Synthetic format example. Actual output read-back is reported by the renderer, not asserted as a test of the fictional app.</pre></section></body></html>

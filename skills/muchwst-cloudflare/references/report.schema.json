@@ -1,0 +1,775 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Web Security Toolkit assessment report",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "1.0"
+      ]
+    },
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "confidential",
+        "synthetic-example"
+      ]
+    },
+    "example_only": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "review",
+        "fix",
+        "verify",
+        "harden"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "base_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "configuration_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "repository",
+        "branch",
+        "base_revision",
+        "head_revision",
+        "configuration_revision",
+        "environment"
+      ],
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "authorized_operations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "inclusions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limits": {
+          "type": "string",
+          "minLength": 1
+        },
+        "report_destination": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "authorized_operations",
+        "inclusions",
+        "exclusions",
+        "limits",
+        "report_destination"
+      ],
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "execution": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name",
+          "version",
+          "execution"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "surface": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ranges": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "assessed",
+              "not-assessed",
+              "not-applicable",
+              "blocked"
+            ]
+          },
+          "method": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "surface",
+          "revision",
+          "ranges",
+          "status",
+          "method",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "vulnerability",
+              "hardening",
+              "reliability",
+              "governance"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low",
+              "informational"
+            ]
+          },
+          "severity_reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_level": {
+            "type": "string",
+            "enum": [
+              "confirmed-reproduction",
+              "confirmed-code",
+              "suspected",
+              "observation"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "confidence_reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "mitigated",
+              "fixed-awaiting-retest",
+              "retest-passed",
+              "accepted-risk",
+              "false-positive",
+              "not-applicable"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "minLength": 1
+          },
+          "priority_reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "lines": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "endpoint": {
+                  "type": "string",
+                  "minLength": 0
+                },
+                "revision": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "path",
+                "lines",
+                "endpoint",
+                "revision"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "prerequisites": {
+            "type": "string",
+            "minLength": 1
+          },
+          "data_flow": {
+            "type": "string",
+            "minLength": 1
+          },
+          "counterevidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "root_cause": {
+            "type": "string",
+            "minLength": 1
+          },
+          "impact": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "reproduction": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "executed",
+                  "not-executed",
+                  "blocked"
+                ]
+              },
+              "environment": {
+                "type": "string",
+                "minLength": 1
+              },
+              "setup": {
+                "type": "string",
+                "minLength": 1
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "expected": {
+                "type": "string",
+                "minLength": 1
+              },
+              "observed": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cleanup": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "status",
+              "environment",
+              "setup",
+              "steps",
+              "expected",
+              "observed",
+              "cleanup"
+            ],
+            "additionalProperties": false
+          },
+          "correction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mitigation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "compatibility": {
+            "type": "string",
+            "minLength": 1
+          },
+          "regression_tests": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "rollout_rollback": {
+            "type": "string",
+            "minLength": 1
+          },
+          "retests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "revision": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "configuration_revision": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "environment": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "case": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "method": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "expected": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "observed": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "result": {
+                  "type": "string",
+                  "enum": [
+                    "passed",
+                    "failed",
+                    "blocked",
+                    "not-run"
+                  ]
+                }
+              },
+              "required": [
+                "revision",
+                "configuration_revision",
+                "environment",
+                "case",
+                "method",
+                "expected",
+                "observed",
+                "result"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "next_action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mappings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "system": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "identifier": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "edition": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verified": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "system",
+                "identifier",
+                "edition",
+                "source",
+                "verified"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "risk_acceptance": {
+            "type": "object",
+            "properties": {
+              "owner": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revisit_date": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "owner",
+              "reason",
+              "revisit_date"
+            ],
+            "additionalProperties": false
+          },
+          "closure_reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cvss": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "vector": {
+                "type": "string",
+                "minLength": 1
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "assumptions": {
+                "type": "string",
+                "minLength": 1
+              },
+              "validated": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "version",
+              "vector",
+              "score",
+              "source",
+              "assumptions",
+              "validated"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "kind",
+          "severity",
+          "severity_reason",
+          "evidence_level",
+          "confidence",
+          "confidence_reason",
+          "status",
+          "priority",
+          "priority_reason",
+          "locations",
+          "prerequisites",
+          "data_flow",
+          "counterevidence",
+          "root_cause",
+          "impact",
+          "evidence",
+          "reproduction",
+          "correction",
+          "mitigation",
+          "compatibility",
+          "regression_tests",
+          "rollout_rollback",
+          "retests",
+          "next_action",
+          "mappings"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "configuration_revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "environment": {
+            "type": "string",
+            "minLength": 1
+          },
+          "case": {
+            "type": "string",
+            "minLength": 1
+          },
+          "method": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observed": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "blocked",
+              "not-run"
+            ]
+          }
+        },
+        "required": [
+          "revision",
+          "configuration_revision",
+          "environment",
+          "case",
+          "method",
+          "expected",
+          "observed",
+          "result"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "residual_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "publisher": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url_or_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "retrieved_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "section": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "consulted",
+              "pointer-only",
+              "unavailable"
+            ]
+          }
+        },
+        "required": [
+          "publisher",
+          "url_or_path",
+          "edition",
+          "retrieved_at",
+          "section",
+          "status"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "production_changes": {
+      "type": "string",
+      "minLength": 1
+    },
+    "persistence": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "title",
+    "classification",
+    "example_only",
+    "created_at",
+    "mode",
+    "target",
+    "scope",
+    "summary",
+    "methods",
+    "tools",
+    "coverage",
+    "findings",
+    "changes",
+    "tests",
+    "limitations",
+    "residual_risks",
+    "next_actions",
+    "sources",
+    "production_changes",
+    "persistence"
+  ],
+  "additionalProperties": false
+}

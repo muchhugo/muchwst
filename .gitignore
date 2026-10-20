@@ -1,0 +1,12 @@
+# Real assessment outputs are private by default; this is not protection for tracked files.
+security-reports/
+assessment-output/
+reports-private/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+__pycache__/
+*.py[cod]
+.DS_Store

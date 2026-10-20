@@ -1,0 +1,1762 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Applicability/routing of the original 250 user topics; not official institutional coverage or 250 confirmed vulnerabilities.",
+  "categories": {
+    "core": "Routinely consider the relevant web trust boundary; not an automatic finding.",
+    "conditional": "Assess when the component/feature/processing exists or an evidenced risk makes it relevant.",
+    "supporting": "Testing, assurance, operations or governance practice; not an independent exploit.",
+    "context": "Architecture/conceptual tool; inspect actual assumptions without prescribing new infrastructure."
+  },
+  "topics": [
+    {
+      "id": 1,
+      "topic": "SQL Injection",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Trace parameterization and unsafe raw-query paths; prove reachability."
+    },
+    {
+      "id": 2,
+      "topic": "XSS",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Check stored, reflected and DOM rendering with contextual encoding."
+    },
+    {
+      "id": 3,
+      "topic": "CSRF",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Inspect ambient credentials and state-changing flows; do not confuse with CORS."
+    },
+    {
+      "id": 4,
+      "topic": "CORS",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Prove cross-origin protected-data exposure; public wildcard alone is not a defect."
+    },
+    {
+      "id": 5,
+      "topic": "SSRF",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Inspect outbound URL features, effective destinations and redirects when present."
+    },
+    {
+      "id": 6,
+      "topic": "IDOR",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Verify object and tenant authorization for reads, mutations and alternate paths."
+    },
+    {
+      "id": 7,
+      "topic": "Path Traversal",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Check final effective paths, archives, symlinks and authorization."
+    },
+    {
+      "id": 8,
+      "topic": "Mass Assignment",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Allowlist writable fields and enforce property-level permissions."
+    },
+    {
+      "id": 9,
+      "topic": "Clickjacking",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Match framing protection to legitimate embedding and demonstrated impact."
+    },
+    {
+      "id": 10,
+      "topic": "Content Security Policy",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Defense in depth with tested directives; absence alone is not High."
+    },
+    {
+      "id": 11,
+      "topic": "Security Headers",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Check effective browser policy, not obsolete blanket header requirements."
+    },
+    {
+      "id": 12,
+      "topic": "Input Validation",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Validate server trust boundaries, sizes and meaning; output safety is separate."
+    },
+    {
+      "id": 13,
+      "topic": "Server-Side Authorization",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Verify function, resource, tenant and property policy at authoritative boundaries."
+    },
+    {
+      "id": 14,
+      "topic": "Row-Level Security",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "If used, check runtime roles, bypass paths, writes and pooled tenant context."
+    },
+    {
+      "id": 15,
+      "topic": "Least Privilege",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Check actual permissions of users, services, data roles and integrations."
+    },
+    {
+      "id": 16,
+      "topic": "RBAC",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Roles may need ownership, tenant and state constraints in addition."
+    },
+    {
+      "id": 17,
+      "topic": "Secrets Management",
+      "category": "core",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Inventory secret lifecycle, delivery, access, logs and environment exposure."
+    },
+    {
+      "id": 18,
+      "topic": ".env in .gitignore",
+      "category": "core",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Useful hygiene, not removal from history, artifacts or revocation of leaks."
+    },
+    {
+      "id": 19,
+      "topic": "API Key Rotation",
+      "category": "core",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Review scopes and recovery; live rotation requires operator authorization."
+    },
+    {
+      "id": 20,
+      "topic": "Secret Scanning",
+      "category": "supporting",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Treat results as redacted leads; do not validate live keys with third parties."
+    },
+    {
+      "id": 21,
+      "topic": "Hashing vs Encryption",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Choose according to recoverability and threat; no custom crypto."
+    },
+    {
+      "id": 22,
+      "topic": "Password Salting",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "For stored passwords, use independent library-managed salts."
+    },
+    {
+      "id": 23,
+      "topic": "bcrypt & Argon2",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Verify installed implementation, work factors, lengths and migration behavior."
+    },
+    {
+      "id": 24,
+      "topic": "JWT Expiry",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Validate signatures and applicable claims; decoding and expiry alone are insufficient."
+    },
+    {
+      "id": 25,
+      "topic": "Refresh Tokens",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Review storage, rotation, replay, concurrency and durable revocation."
+    },
+    {
+      "id": 26,
+      "topic": "OAuth 2.0",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Verify actual flow, PKCE, redirect/state binding and trusted provider behavior."
+    },
+    {
+      "id": 27,
+      "topic": "OpenID Connect",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Validate identity issuer/audience/nonce and safe account linking."
+    },
+    {
+      "id": 28,
+      "topic": "Session Fixation",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Check regeneration and invalidation across authentication and elevation."
+    },
+    {
+      "id": 29,
+      "topic": "MFA",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Assess enrollment, recovery/removal and high-risk roles; absence is contextual."
+    },
+    {
+      "id": 30,
+      "topic": "Brute Force Protection",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Bound attempts/work without easy evasion, false lockout or data disclosure."
+    },
+    {
+      "id": 31,
+      "topic": "Account Enumeration",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Check body, status, timing and delivery distinctions in sensitive flows."
+    },
+    {
+      "id": 32,
+      "topic": "Timing Attacks",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Require bounded repeatable evidence; one latency difference is not proof."
+    },
+    {
+      "id": 33,
+      "topic": "File Upload Validation",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Authorize lifecycle and validate bounded content; isolate active formats."
+    },
+    {
+      "id": 34,
+      "topic": "Webhook Signature Verification",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Verify provider scheme on required raw bytes; add safe deduplication/replay handling."
+    },
+    {
+      "id": 35,
+      "topic": "TLS Certificate Expiry",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "Inspect actual certificate/renewal evidence; do not imply monitoring was configured."
+    },
+    {
+      "id": 36,
+      "topic": "HSTS",
+      "category": "conditional",
+      "skill": "muchwst-cloudflare",
+      "criterion": "Stage after HTTPS verification; subdomains/preload need separate impact review."
+    },
+    {
+      "id": 37,
+      "topic": "Encryption at Rest",
+      "category": "conditional",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Review keys, backups and access; it does not protect all runtime/plaintext exposure."
+    },
+    {
+      "id": 38,
+      "topic": "Dependency Vulnerabilities",
+      "category": "core",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Verify resolved versions, dated advisories, reachability and build exposure."
+    },
+    {
+      "id": 39,
+      "topic": "Supply Chain Attacks",
+      "category": "core",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Review packages, scripts, images, workflows, credentials and artifact trust."
+    },
+    {
+      "id": 40,
+      "topic": "Threat Modeling",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Use a small evidence-based model of assets, actors, boundaries and abuse goals."
+    },
+    {
+      "id": 41,
+      "topic": "Indexes",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Performance choice; a security finding needs a supported resource-abuse path."
+    },
+    {
+      "id": 42,
+      "topic": "EXPLAIN ANALYZE",
+      "category": "supporting",
+      "skill": "muchwst-data",
+      "criterion": "It executes statements; use only safe approved fixtures and limits."
+    },
+    {
+      "id": 43,
+      "topic": "N+1 Queries",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Assess actual bounded cost and abuse, not an automatic vulnerability."
+    },
+    {
+      "id": 44,
+      "topic": "Full Table Scans",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "May be the correct plan; demonstrate cost/security effect before reporting."
+    },
+    {
+      "id": 45,
+      "topic": "Connection Pooling",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Check exhaustion, per-instance budgets and leaked tenant/session context."
+    },
+    {
+      "id": 46,
+      "topic": "Database Migrations",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Review permissions, locks, exposure and old/new version compatibility."
+    },
+    {
+      "id": 47,
+      "topic": "Down Migrations",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "May destroy data; not a universal safe rollback requirement."
+    },
+    {
+      "id": 48,
+      "topic": "Transactions",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Identify actual atomic invariants and external side effects."
+    },
+    {
+      "id": 49,
+      "topic": "ACID",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Reason about needed guarantees; the label alone does not prove correctness."
+    },
+    {
+      "id": 50,
+      "topic": "Isolation Levels",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Verify actual driver/database semantics for the invariant."
+    },
+    {
+      "id": 51,
+      "topic": "Deadlocks",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Review lock order, bounded retries and idempotent transaction handling."
+    },
+    {
+      "id": 52,
+      "topic": "Optimistic Locking",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Use where version guards protect a demonstrated concurrent-write invariant."
+    },
+    {
+      "id": 53,
+      "topic": "Pessimistic Locking",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Use only where justified; inspect scope, timeouts and deadlock behavior."
+    },
+    {
+      "id": 54,
+      "topic": "Normalization",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Schema tradeoff, not a universal security requirement."
+    },
+    {
+      "id": 55,
+      "topic": "Denormalization",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Check consistency/access of duplicated data when actually used."
+    },
+    {
+      "id": 56,
+      "topic": "Foreign Keys",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Protect relevant integrity invariants and tenant relationships."
+    },
+    {
+      "id": 57,
+      "topic": "Unique Constraints",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Use appropriate durable constraints for race-sensitive uniqueness."
+    },
+    {
+      "id": 58,
+      "topic": "Cascading Deletes",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Verify approved deletion scope and cross-tenant/data-loss effects."
+    },
+    {
+      "id": 59,
+      "topic": "Soft Deletes",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Check all query paths; soft deletion is not privacy erasure."
+    },
+    {
+      "id": 60,
+      "topic": "UUIDs vs Auto-Increment",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Guessability differs; neither replaces resource authorization."
+    },
+    {
+      "id": 61,
+      "topic": "Cursor-Based Pagination",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Bound results and validate cursor authorization; not mandatory everywhere."
+    },
+    {
+      "id": 62,
+      "topic": "Full-Text Search",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Check access filters, query cost and data leakage when present."
+    },
+    {
+      "id": 63,
+      "topic": "Read Replicas",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Inspect access/consistency requirements where replicas exist."
+    },
+    {
+      "id": 64,
+      "topic": "Replication Lag",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Do stale reads re-grant permissions or violate an invariant?"
+    },
+    {
+      "id": 65,
+      "topic": "Sharding",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Only inspect an actual architecture; do not add it for checklist compliance."
+    },
+    {
+      "id": 66,
+      "topic": "Partitioning",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Review actual routing/tenant/cost boundaries, not a universal prescription."
+    },
+    {
+      "id": 67,
+      "topic": "Hot Partitions",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Assess fairness/abuse and resource impact in an existing partitioned design."
+    },
+    {
+      "id": 68,
+      "topic": "Postgres VACUUM",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "OS/database operations need evidence; do not blindly tune a production server."
+    },
+    {
+      "id": 69,
+      "topic": "Materialized Views",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Check access, freshness and derived sensitive data."
+    },
+    {
+      "id": 70,
+      "topic": "Backups",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Review protected storage, key recovery and actual restore evidence."
+    },
+    {
+      "id": 71,
+      "topic": "Testing Your Restores",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Only isolated approved restores; an existing backup is not proof of recovery."
+    },
+    {
+      "id": 72,
+      "topic": "Point-in-Time Recovery",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Verify configuration, retention, keys and measured recovery where required."
+    },
+    {
+      "id": 73,
+      "topic": "Change Data Capture",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Review data recipients, tenant boundaries and lifecycle when present."
+    },
+    {
+      "id": 74,
+      "topic": "Outbox Pattern",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Useful for specific atomic publication needs; not universal or exactly-once proof."
+    },
+    {
+      "id": 75,
+      "topic": "ORM Lazy Loading",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Inspect hidden query cost and accidental relationship disclosure."
+    },
+    {
+      "id": 76,
+      "topic": "CAP Theorem",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Architectural reasoning, not a vulnerability checklist requirement."
+    },
+    {
+      "id": 77,
+      "topic": "Eventual Consistency",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Assess whether staleness violates the particular security/business invariant."
+    },
+    {
+      "id": 78,
+      "topic": "Strong Consistency",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Require only where the invariant demands it, not for every read."
+    },
+    {
+      "id": 79,
+      "topic": "Raft Consensus",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Only relevant to systems actually using consensus; do not implement one during a fix."
+    },
+    {
+      "id": 80,
+      "topic": "Leader Election",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Review actual ownership/failover assumptions when present."
+    },
+    {
+      "id": 81,
+      "topic": "Split Brain",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Test bounded failure semantics if the topology can violate an invariant."
+    },
+    {
+      "id": 82,
+      "topic": "Quorums",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Inspect actual consistency configuration, not prescribed infrastructure."
+    },
+    {
+      "id": 83,
+      "topic": "Clock Skew",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Bound tolerance for expiry, locks, timestamps and distributed decisions."
+    },
+    {
+      "id": 84,
+      "topic": "Distributed Locks",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Check ownership, leases, fencing and failure handling where used."
+    },
+    {
+      "id": 85,
+      "topic": "Consistent Hashing",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "An actual routing/cache design consideration, not a mandatory security control."
+    },
+    {
+      "id": 86,
+      "topic": "Bloom Filters",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Probabilistic results must not become final authorization truth."
+    },
+    {
+      "id": 87,
+      "topic": "Two-Phase Commit",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Only relevant if used; do not add distributed coordination speculatively."
+    },
+    {
+      "id": 88,
+      "topic": "CQRS",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Inspect actual read/write authorization and freshness; no required redesign."
+    },
+    {
+      "id": 89,
+      "topic": "Event Sourcing",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Check event access, replay, retention and state rules only when present."
+    },
+    {
+      "id": 90,
+      "topic": "Race Conditions",
+      "category": "core",
+      "skill": "muchwst-data",
+      "criterion": "Identify concurrent security/business invariants and deterministic safe tests."
+    },
+    {
+      "id": 91,
+      "topic": "Backpressure",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Bound queues, streams and producer/consumer work when relevant."
+    },
+    {
+      "id": 92,
+      "topic": "Load Shedding",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Protect service without silently failing open permissions."
+    },
+    {
+      "id": 93,
+      "topic": "Bulkheads",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Isolate actual failure/resource domains; no mandatory new library."
+    },
+    {
+      "id": 94,
+      "topic": "Jitter",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Use suitable bounded retry/recovery spreading, not random delay as a cure-all."
+    },
+    {
+      "id": 95,
+      "topic": "Retry Storms",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Check amplification across layers, budgets and idempotency."
+    },
+    {
+      "id": 96,
+      "topic": "Cascading Failures",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Trace actual dependencies and failure amplification."
+    },
+    {
+      "id": 97,
+      "topic": "Thundering Herd",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Check refresh/recovery fan-out and cache miss contention."
+    },
+    {
+      "id": 98,
+      "topic": "Cache Invalidation",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Review stale permissions, tenant keys and role-change invalidation."
+    },
+    {
+      "id": 99,
+      "topic": "Cache Hit Ratio",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "A performance signal, not a security finding by itself."
+    },
+    {
+      "id": 100,
+      "topic": "TTLs",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Expiry policy must match revocation and durability requirements."
+    },
+    {
+      "id": 101,
+      "topic": "Cache Warming",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Performance/operations technique; check only if actual sensitive-data/cost risk exists."
+    },
+    {
+      "id": 102,
+      "topic": "Write-Through vs Write-Back",
+      "category": "context",
+      "skill": "muchwst-data",
+      "criterion": "Assess durability and stale authorization in the actual cache design."
+    },
+    {
+      "id": 103,
+      "topic": "Redis Eviction Policies",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Eviction must not discard required entitlement/revocation truth."
+    },
+    {
+      "id": 104,
+      "topic": "CDNs",
+      "category": "conditional",
+      "skill": "muchwst-cloudflare",
+      "criterion": "Review actual private caching, edge/origin trust and non-proxied exposure."
+    },
+    {
+      "id": 105,
+      "topic": "Cache-Control Headers",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Check effective policies through browser, worker, proxy and CDN."
+    },
+    {
+      "id": 106,
+      "topic": "ETags",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Verify conditional responses/cache keys do not cross identities or leak state."
+    },
+    {
+      "id": 107,
+      "topic": "Dead Letter Queues",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Control access, sensitive retention, retries and operator replay."
+    },
+    {
+      "id": 108,
+      "topic": "Poison Messages",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Bound retries/cost and avoid starving unrelated tenants/jobs."
+    },
+    {
+      "id": 109,
+      "topic": "At-Least-Once Delivery",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Require appropriate duplicate-safe effects and durable event identity."
+    },
+    {
+      "id": 110,
+      "topic": "Exactly-Once Semantics",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Name the exact boundary; broker claims do not cover arbitrary external effects."
+    },
+    {
+      "id": 111,
+      "topic": "Message Ordering",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Verify actual key/partition/consumer guarantees and stale event behavior."
+    },
+    {
+      "id": 112,
+      "topic": "Kafka Consumer Groups",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Only if Kafka exists; inspect scope, ownership and processing semantics."
+    },
+    {
+      "id": 113,
+      "topic": "Partition Keys",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Verify tenant/resource routing, order requirements and hot-key effects."
+    },
+    {
+      "id": 114,
+      "topic": "Background Jobs",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Authenticate initiation, authorize worker scope and validate bounded payloads."
+    },
+    {
+      "id": 115,
+      "topic": "Webhook Retries",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Make verified state transitions and side effects replay-safe."
+    },
+    {
+      "id": 116,
+      "topic": "DNS",
+      "category": "conditional",
+      "skill": "muchwst-cloudflare",
+      "criterion": "Inspect actual records, ownership, origin exposure and service dependencies."
+    },
+    {
+      "id": 117,
+      "topic": "DNS Propagation",
+      "category": "supporting",
+      "skill": "muchwst-cloudflare",
+      "criterion": "Stage changes and verify actual resolution; do not assume instant rollback."
+    },
+    {
+      "id": 118,
+      "topic": "HTTP Status Codes",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Preserve semantics while preventing sensitive disclosure/account enumeration."
+    },
+    {
+      "id": 119,
+      "topic": "HTTP Method Semantics",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Avoid unsafe state-changing retrieval and parser/method ambiguity."
+    },
+    {
+      "id": 120,
+      "topic": "Keep-Alive",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Assess connection budgets/timeouts and lifecycle; not an independent flaw."
+    },
+    {
+      "id": 121,
+      "topic": "HTTP/2",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Inspect actual parsers/proxies and abuse limits; no protocol-name verdict."
+    },
+    {
+      "id": 122,
+      "topic": "WebSockets",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Authorize messages/resources and revoke already-open protected delivery."
+    },
+    {
+      "id": 123,
+      "topic": "Server-Sent Events",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Verify access, token handling, resume IDs, cancellation and buffers."
+    },
+    {
+      "id": 124,
+      "topic": "Long Polling",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Verify repeated access decisions, timeouts, resource limits and cleanup."
+    },
+    {
+      "id": 125,
+      "topic": "gRPC",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Inspect actual gateways, authentication, schemas and resource limits."
+    },
+    {
+      "id": 126,
+      "topic": "Protocol Buffers",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Validate application invariants and trust boundaries beyond serialization."
+    },
+    {
+      "id": 127,
+      "topic": "API Versioning",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Inventory deprecated routes and consistent protections across versions."
+    },
+    {
+      "id": 128,
+      "topic": "OpenAPI Specs",
+      "category": "supporting",
+      "skill": "muchwst",
+      "criterion": "Compare to runtime checks; a specification alone does not enforce policy."
+    },
+    {
+      "id": 129,
+      "topic": "Backward Compatibility",
+      "category": "core",
+      "skill": "muchwst-fix",
+      "criterion": "Protect legitimate consumers without preserving a known security defect blindly."
+    },
+    {
+      "id": 130,
+      "topic": "Request Size Limits",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Bound parsing/processing/decompression cost before expensive work."
+    },
+    {
+      "id": 131,
+      "topic": "Compression",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Assess expansion, CPU, secrets/compression side channels and limits where relevant."
+    },
+    {
+      "id": 132,
+      "topic": "Latency vs Throughput",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Measurement context; not a vulnerability or universal target."
+    },
+    {
+      "id": 133,
+      "topic": "Egress Fees",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Assess abuse-driven cost separately from ordinary commercial optimization."
+    },
+    {
+      "id": 134,
+      "topic": "VPCs",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "Inspect actual network boundaries/paths; no mandate to deploy a VPC."
+    },
+    {
+      "id": 135,
+      "topic": "Subnets",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "Check reachability and segmentation evidence when used."
+    },
+    {
+      "id": 136,
+      "topic": "NAT Gateways",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "NAT is not application authorization; inspect actual ingress/egress controls."
+    },
+    {
+      "id": 137,
+      "topic": "Firewalls",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "Verify effective IPv4/IPv6/container rules and recoverable changes."
+    },
+    {
+      "id": 138,
+      "topic": "Security Groups",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "Inspect cloud and host rules together and least-privilege service exposure."
+    },
+    {
+      "id": 139,
+      "topic": "Service Mesh",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Only if present; mesh names do not prove authentication or tenancy."
+    },
+    {
+      "id": 140,
+      "topic": "Ingress Controllers",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "Verify routes, trusted headers, private services and effective settings."
+    },
+    {
+      "id": 141,
+      "topic": "Health Checks",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Avoid sensitive detail exposure and misleading/overly broad checks."
+    },
+    {
+      "id": 142,
+      "topic": "Liveness vs Readiness Probes",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Inspect real restart/routing semantics without amplifying outages."
+    },
+    {
+      "id": 143,
+      "topic": "Graceful Shutdown",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Handle active transactions, sockets and jobs during actual shutdown."
+    },
+    {
+      "id": 144,
+      "topic": "Connection Draining",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Preserve bounded valid in-flight work and prevent resource leaks."
+    },
+    {
+      "id": 145,
+      "topic": "Stateless Services",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Architecture choice; check accidental cross-user/process state instead of prescribing."
+    },
+    {
+      "id": 146,
+      "topic": "Failover",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Verify protected invariants and distinguish tested recovery from a design claim."
+    },
+    {
+      "id": 147,
+      "topic": "Multi-Region",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Optional topology; assess only actual latency, data and consistency implications."
+    },
+    {
+      "id": 148,
+      "topic": "Availability Zones",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Deployment/recovery design, not a security mandate for every project."
+    },
+    {
+      "id": 149,
+      "topic": "Single Points of Failure",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Report contextual resilience risks without automatically calling them exploitable."
+    },
+    {
+      "id": 150,
+      "topic": "Disaster Recovery",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Check owners, protected backups and measured recovery exercises."
+    },
+    {
+      "id": 151,
+      "topic": "RTO & RPO",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Distinguish owner-approved targets from demonstrated recovery results."
+    },
+    {
+      "id": 152,
+      "topic": "SLAs",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Business commitments need actual policy/legal review, not an invented guarantee."
+    },
+    {
+      "id": 153,
+      "topic": "SLOs",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Use meaningful observed service measures and approved targets."
+    },
+    {
+      "id": 154,
+      "topic": "Error Budgets",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Operational decision framework, not a vulnerability score."
+    },
+    {
+      "id": 155,
+      "topic": "Incident Response",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Record containment/evidence/recovery owners; no incident action is implied."
+    },
+    {
+      "id": 156,
+      "topic": "On-Call",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Confirm actual response ownership rather than inventing staffing."
+    },
+    {
+      "id": 157,
+      "topic": "Runbooks",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Keep actionable tested recovery instructions with access boundaries."
+    },
+    {
+      "id": 158,
+      "topic": "Postmortems",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Learn causes without fabricating incident history or exposing sensitive data."
+    },
+    {
+      "id": 159,
+      "topic": "Chaos Engineering",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Needs explicit scoped disruption approval; not a routine review command."
+    },
+    {
+      "id": 160,
+      "topic": "Graceful Degradation",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Degrade optional function without silently failing open authorization."
+    },
+    {
+      "id": 161,
+      "topic": "Autoscaling",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Check limits and abuse-driven costs where configured; no universal fix."
+    },
+    {
+      "id": 162,
+      "topic": "Horizontal vs Vertical Scaling",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Architecture/capacity tradeoff; verify cross-instance invariants when relevant."
+    },
+    {
+      "id": 163,
+      "topic": "Cold Starts",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Assess actual latency/resource behavior, not automatic severity."
+    },
+    {
+      "id": 164,
+      "topic": "Capacity Planning",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Use workload evidence and budgets, not invented p99/capacity numbers."
+    },
+    {
+      "id": 165,
+      "topic": "Load Testing",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Only authorized bounded targets; no saturation or financial effects by default."
+    },
+    {
+      "id": 166,
+      "topic": "Memory Leaks",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Trace reachable growth/lifecycle and bound a safe reproduction."
+    },
+    {
+      "id": 167,
+      "topic": "OOM Killer",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Inspect relevant resource limits/failure paths without causing a live outage."
+    },
+    {
+      "id": 168,
+      "topic": "Structured Logging",
+      "category": "core",
+      "skill": "muchwst-runtime",
+      "criterion": "Useful safe events with redaction, integrity and no injected control characters."
+    },
+    {
+      "id": 169,
+      "topic": "Log Levels",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Production debug verbosity may expose data; review actual emitted content."
+    },
+    {
+      "id": 170,
+      "topic": "Log Rotation",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Bound disk/retention and preserve incident evidence appropriately."
+    },
+    {
+      "id": 171,
+      "topic": "Distributed Tracing",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Protect headers, baggage, sampling and telemetry recipients."
+    },
+    {
+      "id": 172,
+      "topic": "OpenTelemetry",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Inspect actual exporter/configuration; instrumentation is not privacy by default."
+    },
+    {
+      "id": 173,
+      "topic": "Correlation IDs",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Use safe bounded IDs that do not embed tokens or personal information."
+    },
+    {
+      "id": 174,
+      "topic": "Metrics Cardinality",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Avoid unbounded attacker-controlled labels and sensitive identifiers."
+    },
+    {
+      "id": 175,
+      "topic": "p99 Latency",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Measure honestly; tail latency is evidence context, not a vulnerability itself."
+    },
+    {
+      "id": 176,
+      "topic": "Alert Fatigue",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Actionable ownership/noise is an operations concern, not a security score."
+    },
+    {
+      "id": 177,
+      "topic": "Error Tracking",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Redact stack context/PII before sending to approved recipients."
+    },
+    {
+      "id": 178,
+      "topic": "Profiling",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Use scoped safe data and limits; profiles can contain sensitive material."
+    },
+    {
+      "id": 179,
+      "topic": "Flame Graphs",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Diagnostic artifact, not proof of a vulnerability without a data/control path."
+    },
+    {
+      "id": 180,
+      "topic": "Infrastructure as Code",
+      "category": "conditional",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Review privileged changes, secrets, plan/state and deployment trust."
+    },
+    {
+      "id": 181,
+      "topic": "Terraform State",
+      "category": "conditional",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Control encryption/access and artifacts; sensitive variable marking is not redaction."
+    },
+    {
+      "id": 182,
+      "topic": "GitOps",
+      "category": "conditional",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Verify trusted reconciliation inputs and permissions; review is not apply permission."
+    },
+    {
+      "id": 183,
+      "topic": "Blue-Green Deployments",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Check actual routing/old-new security invariants; not required universally."
+    },
+    {
+      "id": 184,
+      "topic": "Canary Releases",
+      "category": "conditional",
+      "skill": "muchwst-fix",
+      "criterion": "Stage verified fixes without silently leaving users exposed; report rollout limits."
+    },
+    {
+      "id": 185,
+      "topic": "Rollbacks",
+      "category": "core",
+      "skill": "muchwst-fix",
+      "criterion": "A reverted security fix may reopen a defect; define a safe recovery strategy."
+    },
+    {
+      "id": 186,
+      "topic": "Feature Flags",
+      "category": "conditional",
+      "skill": "muchwst-fix",
+      "criterion": "Inspect secure defaults and flag paths that can re-enable a vulnerability."
+    },
+    {
+      "id": 187,
+      "topic": "Environment Parity",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Match relevant behavior without copying production secrets or data."
+    },
+    {
+      "id": 188,
+      "topic": "Staging Environments",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Use approved isolated fixtures; staging does not mean unlimited test authority."
+    },
+    {
+      "id": 189,
+      "topic": "12-Factor Apps",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Design guidance, not mandatory security compliance or a proof of safety."
+    },
+    {
+      "id": 190,
+      "topic": "Multi-Stage Builds",
+      "category": "conditional",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Check copied artifacts, cache and layers for leaked secrets."
+    },
+    {
+      "id": 191,
+      "topic": "Non-Root Containers",
+      "category": "conditional",
+      "skill": "muchwst-vps",
+      "criterion": "Apply least privilege with required paths/capabilities; verify effective runtime identity."
+    },
+    {
+      "id": 192,
+      "topic": "Image Scanning",
+      "category": "supporting",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Validate image/digest/advisories and exposure; scanner count is not final risk."
+    },
+    {
+      "id": 193,
+      "topic": "Resource Requests & Limits",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Inspect actual scheduler/runtime constraints and legitimate workload effects."
+    },
+    {
+      "id": 194,
+      "topic": "Pod Disruption Budgets",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Only if relevant orchestration exists; assess actual drain/recovery behavior."
+    },
+    {
+      "id": 195,
+      "topic": "Semantic Versioning",
+      "category": "supporting",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Version labels do not prove compatibility or security; inspect actual changes."
+    },
+    {
+      "id": 196,
+      "topic": "Lockfiles",
+      "category": "core",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Use resolved provenance/version evidence; pins alone do not establish trust."
+    },
+    {
+      "id": 197,
+      "topic": "Reproducible Builds",
+      "category": "supporting",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Compare actual trusted inputs/artifacts; do not assert reproducibility from a lockfile."
+    },
+    {
+      "id": 198,
+      "topic": "Branch Protection",
+      "category": "supporting",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Inspect authorized settings; missing governance is not automatically a code vulnerability."
+    },
+    {
+      "id": 199,
+      "topic": "Public S3 Buckets",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Distinguish intentional public assets from private data exposed by policy/ACL."
+    },
+    {
+      "id": 200,
+      "topic": "Presigned URLs",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Authorize issuance and constrain bearer capability scope/expiry/logging."
+    },
+    {
+      "id": 201,
+      "topic": "Cloud Billing Alerts",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Notifications may lag and are not hard spend caps without provider evidence."
+    },
+    {
+      "id": 202,
+      "topic": "Unit Tests",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Prove a meaningful invariant with both denied and legitimate flows."
+    },
+    {
+      "id": 203,
+      "topic": "Integration Tests",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Exercise real relevant boundaries with safe fixtures and permissions."
+    },
+    {
+      "id": 204,
+      "topic": "End-to-End Tests",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Verify actual browser/API flows in the authorized test environment."
+    },
+    {
+      "id": 205,
+      "topic": "Contract Testing",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Check public fields, errors and compatibility; contracts alone are not authorization."
+    },
+    {
+      "id": 206,
+      "topic": "Flaky Tests",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Investigate nondeterminism; retries/skips do not erase regression evidence."
+    },
+    {
+      "id": 207,
+      "topic": "Mocking",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Mock dangerous effects but do not mock away the guard/sink being verified."
+    },
+    {
+      "id": 208,
+      "topic": "Regression Tests",
+      "category": "core",
+      "skill": "muchwst-fix",
+      "criterion": "Prefer fail-before/pass-after proof plus legitimate behavior at the tested revision."
+    },
+    {
+      "id": 209,
+      "topic": "Smoke Tests",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Check basic deployed/tested behavior without claiming comprehensive coverage."
+    },
+    {
+      "id": 210,
+      "topic": "Property-Based Testing",
+      "category": "supporting",
+      "skill": "muchwst-fix",
+      "criterion": "Use bounded invariant-driven cases and preserve minimal failures."
+    },
+    {
+      "id": 211,
+      "topic": "Fuzzing",
+      "category": "supporting",
+      "skill": "muchwst",
+      "criterion": "Only authorized bounded fixtures; do not run a public fuzz campaign implicitly."
+    },
+    {
+      "id": 212,
+      "topic": "Error Handling",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Preserve semantics, avoid disclosure and fail-open behavior."
+    },
+    {
+      "id": 213,
+      "topic": "Edge Cases",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Test boundary values and states that affect real contracts/security invariants."
+    },
+    {
+      "id": 214,
+      "topic": "Off-by-One Errors",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Link an actual boundary error to access, quota, expiry or other impact."
+    },
+    {
+      "id": 215,
+      "topic": "Floating Point Math",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Evaluate the domain and precision needed; use in UI alone is not a security defect."
+    },
+    {
+      "id": 216,
+      "topic": "Storing Money as Floats",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Use deliberate exact monetary representation and currency-aware rounding/ranges."
+    },
+    {
+      "id": 217,
+      "topic": "Time Zones",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Inspect expiry/billing/business dates with explicit semantics."
+    },
+    {
+      "id": 218,
+      "topic": "Daylight Saving Time",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Verify date-sensitive invariants; no need to add time logic where absent."
+    },
+    {
+      "id": 219,
+      "topic": "Unicode",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Check canonical identity/encoding rules without mutating exact passwords/tokens."
+    },
+    {
+      "id": 220,
+      "topic": "Character Encoding",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Prevent decoding disagreement and use sink-appropriate output encoding."
+    },
+    {
+      "id": 221,
+      "topic": "Thread Safety",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Inspect shared state and real runtime concurrency, not only language labels."
+    },
+    {
+      "id": 222,
+      "topic": "Event Loop Blocking",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Trace reachable expensive work and bounded resource abuse."
+    },
+    {
+      "id": 223,
+      "topic": "Unhandled Promise Rejections",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Inspect actual runtime failure behavior and error/recovery controls."
+    },
+    {
+      "id": 224,
+      "topic": "Integer Overflow",
+      "category": "conditional",
+      "skill": "muchwst-data",
+      "criterion": "Validate bounded values/conversions at monetary, size and security boundaries."
+    },
+    {
+      "id": 225,
+      "topic": "Garbage Collection",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Runtime behavior to investigate when relevant; not a security requirement itself."
+    },
+    {
+      "id": 226,
+      "topic": "Schema Validation",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Execute request/response boundary schemas; types alone are not runtime validation."
+    },
+    {
+      "id": 227,
+      "topic": "Debouncing",
+      "category": "context",
+      "skill": "muchwst",
+      "criterion": "UI behavior, not protection against direct server calls."
+    },
+    {
+      "id": 228,
+      "topic": "Big O Notation",
+      "category": "context",
+      "skill": "muchwst-runtime",
+      "criterion": "Reasoning tool for cost; actual reachability/limits determine security impact."
+    },
+    {
+      "id": 229,
+      "topic": "Technical Debt",
+      "category": "supporting",
+      "skill": "muchwst",
+      "criterion": "Separate maintainability backlog from demonstrated exploitable defects."
+    },
+    {
+      "id": 230,
+      "topic": "Dead Code",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Prove reachability/unreachability, including dynamic paths; no blanket deletion."
+    },
+    {
+      "id": 231,
+      "topic": "Merge Conflicts",
+      "category": "core",
+      "skill": "muchwst-fix",
+      "criterion": "Review the actual final integrated result, not only the previous branch evidence."
+    },
+    {
+      "id": 232,
+      "topic": "GDPR",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Determine applicable processing/evidence with qualified review; no legal certification."
+    },
+    {
+      "id": 233,
+      "topic": "PII Handling",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Minimize authorized fields, retention, logs, caches and external transfers."
+    },
+    {
+      "id": 234,
+      "topic": "Audit Logs",
+      "category": "core",
+      "skill": "muchwst-runtime",
+      "criterion": "Capture safe useful security events with integrity/access/retention controls."
+    },
+    {
+      "id": 235,
+      "topic": "Data Residency",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Verify actual replicas/backups/telemetry/providers and applicable obligations."
+    },
+    {
+      "id": 236,
+      "topic": "SOC 2",
+      "category": "supporting",
+      "skill": "muchwst-runtime",
+      "criterion": "Governance/assurance context; a checklist cannot certify compliance."
+    },
+    {
+      "id": 237,
+      "topic": "PCI DSS",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Payment processing scope and current applicable requirements need qualified verification."
+    },
+    {
+      "id": 238,
+      "topic": "Cookie Consent",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Review actual cookie purposes/processing and jurisdiction; not every cookie is optional."
+    },
+    {
+      "id": 239,
+      "topic": "Software Licenses",
+      "category": "supporting",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Track provenance/obligations; no invented legal conclusions."
+    },
+    {
+      "id": 240,
+      "topic": "SPF, DKIM & DMARC",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Check actual senders/DNS plan; mail authentication is not API authorization."
+    },
+    {
+      "id": 241,
+      "topic": "Email Bounce Handling",
+      "category": "conditional",
+      "skill": "muchwst-runtime",
+      "criterion": "Prevent abuse/disclosure and review provider events when email is used."
+    },
+    {
+      "id": 242,
+      "topic": "Chargebacks",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Business/payment risk; verify price/entitlement/webhook/refund invariants."
+    },
+    {
+      "id": 243,
+      "topic": "Bot Protection",
+      "category": "conditional",
+      "skill": "muchwst-cloudflare",
+      "criterion": "Use supported signals and legitimate-client tests; no blanket scanner/user-agent trust."
+    },
+    {
+      "id": 244,
+      "topic": "Prompt Injection",
+      "category": "conditional",
+      "skill": "muchwst-ai",
+      "criterion": "If AI/tools exist, prove unauthorized effects and enforce policy outside the model."
+    },
+    {
+      "id": 245,
+      "topic": "Hallucinated Packages",
+      "category": "core",
+      "skill": "muchwst-supply-chain",
+      "criterion": "Verify actual package existence/provenance/API before an authorized installation."
+    },
+    {
+      "id": 246,
+      "topic": "Real-time streaming",
+      "category": "conditional",
+      "skill": "muchwst",
+      "criterion": "Validate access/revocation, buffering, cancellation, costs and sensitive event output."
+    },
+    {
+      "id": 247,
+      "topic": "Context Windows",
+      "category": "conditional",
+      "skill": "muchwst-ai",
+      "criterion": "Review isolation/retention and context budgets; size does not prove memory safety."
+    },
+    {
+      "id": 248,
+      "topic": "Evals",
+      "category": "supporting",
+      "skill": "muchwst-ai",
+      "criterion": "Use bounded adversarial and allowed-flow tests; one pass is not assurance."
+    },
+    {
+      "id": 249,
+      "topic": "Model Version Pinning",
+      "category": "conditional",
+      "skill": "muchwst-ai",
+      "criterion": "Record actual versions/alias limits and re-evaluate changes when the feature exists."
+    },
+    {
+      "id": 250,
+      "topic": "Reading the maxed LOC Diff",
+      "category": "core",
+      "skill": "muchwst",
+      "criterion": "Interpret as complete large/truncated-diff review: recover pages/files or disclose exact gaps. Never silently cap coverage."
+    }
+  ]
+}
